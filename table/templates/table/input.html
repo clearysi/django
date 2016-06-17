@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html>
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="css/dhtmlxcalendar.css">
+<script src="home/scleary/Lab_database/dhtml/codebase/dhtmlxcalendar.js"></script>
+{{ form.media }}
+{% endblock css %}
+
+{% block title %}
+Input Data
+{% endblock title %}
+
+
+<body>
+{% block content %}
+        <p id="title"> Input Data</p>
+        {{state}}
+        <form action="/input/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" onclick="return confirm ('Are you sure the details you've entered are correct?')" value="Submit" />
+        </form>
+       <p> <a href="/list">Upload csv file</a></p>
+{% endblock %}
+
+</body>
+</html>

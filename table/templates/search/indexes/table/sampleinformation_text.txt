@@ -1,0 +1,4 @@
+{{ object.d_number | safe}}
+{{ object.date |safe}}
+{{ object.user.worksheet_number }}
+{{ object.link }}

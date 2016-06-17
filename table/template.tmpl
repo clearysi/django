@@ -1,0 +1,14 @@
+<table>
+<tr>
+    <th>d_number</th>
+    <th>date</th>
+    <th>worksheet_number</th>
+</tr>
+{% for b in obj %}
+<tr>
+    <td>{{b.d_number}}</td>
+    <td>{{b.title}}</td>
+    <td>{{b.publication_year}}</td>
+<tr>
+{% endfor %}
+</table>

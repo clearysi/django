@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html>
+{% extends "base.html" %}
+<head>
+    <% block pagetitle %> Requests<% endblock %>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+{% block content %}
+    <h1> Requests</h1>
+
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        {% if next %}
+            <input type="hidden" name="next" value="{{next}}"/>
+        {% endif %}
+        Subject:
+        <input type="text" name="subject" value="" /><br />
+        Sender Email:
+        <input type="date" name="sender" value="" /><br />
+        Message:
+        <input type="text" name="message" value="" /><br />
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+</body>
+</html>

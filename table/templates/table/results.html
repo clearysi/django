@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+<html>
+
+    <head>
+        <title> Sample Database</title>
+        <link rel="stylesheet" href="{{ STATIC_URL}}django_tables2/themes/paleblue/css/screen.css"/>
+    </head>
+
+<body>
+{% block content %}
+    <p id="home"> <a href="/home"> Home </a> </p>
+    <p id="title"> Search Database</p>
+    {{state}}
+    <form action="" method="POST" autocomplete="on">
+    {% csrf_token %}
+        D Number:
+        <select multiple name="d_number">
+            {% for entry in d_number_values%}
+            <option value="{{entry.d_number}}">{{entry.d_number}}</option>
+            {% endfor %}
+
+        </select><br />
+        Start Date:
+        {{form.start_date}}
+       <br />
+        End Date:
+        {{form.end_date}}
+        <br />
+        Worksheet Number:
+        <select multiple name="worksheet_number">
+            {% for entry in worksheet_number_values %}
+            <option value="{{entry.worksheet_number}}">{{entry.worksheet_number}}</option>
+            {% endfor %}
+
+        </select><br />
+        Link:
+        <select multiple name="link">
+            {% for entry in link_values %}
+            <option value="{{entry.link}}">{{entry.link}}</option>
+            {% endfor %}
+
+        </select><br />
+
+    <input id="submit" type="submit" value="Submit">
+    <p > <a href="/results"> Start search again </a> </p>
+    </form>
+
+    {% render_table obj %}
+    <a href="/files/{{filename}}" download="Database_Query_Results.csv">Download Results</a>
+    <p id="home"> <a href="/modify"> Click to modify a sample in the database</a> </p>
+
+{% endblock %}
+</body>
+</html>

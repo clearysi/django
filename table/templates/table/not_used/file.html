@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1-transitional.dtd">
+<html>
+{% extends "base.html" %}
+<head>
+    <% block pagetitle %> Input Data <% endblock %>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+{% block content %}
+        <p id="home"> <a href="/input"> Back to input form </a> </p>
+        <p id="title"> Upload Form</p>
+        {{state}}
+        {% if documents %}
+            <ul>
+                {% for document in documents %}
+                    <li><a href="{{ document.docfile.url}}">{{ document.docfile.name }}</a> </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+        <form action="{% url 'file' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{form.non_field_errors}}</p>
+            <p>{{form.docfile.errors}}</p>
+            <p>
+                {{form.docfile.errors}}
+                {{form.docfile}}
+            </p>
+            Upload File
+            <input type="file" name="file" value="" /><br />
+
+            <p><input type="submit" value="Upload"/></p>
+        </form>
+{% endblock %}
+</body>
+</html>

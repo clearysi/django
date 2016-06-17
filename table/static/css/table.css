@@ -1,0 +1,25 @@
+th{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    border: solid;
+        }
+td{
+
+    border:1px solid black;
+    }
+
+#logout{
+    color:#FF0000;
+    font-size:15px;
+    text-align: right;}
+
+#home{
+    color:#FF0000;
+    font-size:15px;
+    text-align: right;}
+
+#query{
+    color:#FF0000;
+    font-size:15px;
+    text-align: right;}

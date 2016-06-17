@@ -1,0 +1,46 @@
+{% load staticfiles %}
+{% load selectable_tags %}
+
+
+<html>
+<head>
+    <title> {% block pagetitle %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link type="text/css" href="{% static 'css/dhtmlxcalendar.css' %}">
+    <script src="home/scleary/Lab_database/dhtml/codebase/dhtmlxcalendar.js"></script>
+    <script type="text/javascript" src="jquery-1.12.0.min.js"></script>
+    {% include 'session_security/all.html' %}
+</head>
+<body>
+
+    <div id="container">
+	    <div id="header">
+            <p>Sample Database</p>
+		    <p id="user" style="color:#8904B1;"> User Profile:<a href="/admin">{{request.user.username}} </a> </p>
+
+		    <ul>
+			    <li class="selected">
+				    <a href="/home/">Home</a>
+			    </li>
+			    <li>
+				    <a href="/contact/">Submit Requests</a>
+			    </li>
+                <li>
+                    <a href="/logout/" >Logout</a>
+                </li>
+		    </ul>
+	    </div>
+        <div id="content">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+        </div>
+        <div id="footer"><img src="{% static 'table/Trust_logo.jpg' %}"  height="60" width="400"></div>
+    </div>
+</body>
+</html>

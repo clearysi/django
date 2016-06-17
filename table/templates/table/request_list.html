@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title> Sample Database</title>
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    </head>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" >Sample Database</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Subject</th>
+                <th>Sender</th>
+                <th>Message</th>
+            </tr>
+            {% for b in obj %}
+                <tr>
+                    <td>{{b.subject}}</td>
+                    <td>{{b.sender}}</td>
+                    <td>{{b.message}}</td>
+                <tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</html>

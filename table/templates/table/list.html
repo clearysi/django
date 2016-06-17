@@ -1,0 +1,25 @@
+<html>
+{% extends "base.html" %}
+<head>
+    <% block pagetitle %> Upload File <% endblock %>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+{% block content %}
+        <p id="home"> <a href="/home"> Home </a> </p>
+        {% if samples %}
+            <p> The following samples already exist:</p>
+            {% for sample in samples %}
+                <p> {{sample}}</p>
+            {% endfor %}
+        {% endif %}
+        <form action="/list/ " method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}<br>
+            <p><input type="submit" value="Upload"</p>
+        </form>
+{% endblock %}
+    </body>
+</html>

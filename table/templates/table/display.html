@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title> Sample Database</title>
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    </head>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" >Sample Database</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>D Number</th>
+                <th>Date</th>
+                <th>Worksheet Number</th>
+                <th>Link to S Drive</th>
+            </tr>
+            {% for b in obj %}
+                <tr>
+                    <td>{{b.d_number}}</td>
+                    <td>{{b.date}}</td>
+                    <td>{{b.worksheet_number}}</td>
+                    <td><a href="file://{{b.link}}">{{b.link}}</a></td>
+                <tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</html>

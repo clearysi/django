@@ -1,0 +1,31 @@
+<html>
+{% extends "base.html" %}
+<head>
+    <% block pagetitle %> Search Database <% endblock %>
+
+</head>
+
+<body>
+{% block content %}
+        <p id="home"> <a href="/home"> Home </a> </p>
+        <p id="title"> Search Database</p>
+        {{state}}
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{next}}"/>
+            {% endif %}
+            D_number:
+            <input type="text" name="d_number" value="" /><br />
+            Date:
+            <input type="date" name="date" value="" /><br />
+           Worksheet Number:
+            <input type="text" name="worksheet_number" value="" /><br />
+            Link to S Drive:
+            <input type="text" name="link" value="" /><br />
+
+            <input type="submit" value="Search" />
+        </form>
+{% endblock %}
+</body>
+</html>

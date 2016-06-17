@@ -1,0 +1,36 @@
+<html>
+{% extends "base.html" %}
+<head>
+    <title>Search</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <style>
+        body{
+                font-family:Arial,Helvetica,sans-serif;
+                font-size:12px;
+        }
+    </style>
+</head>
+
+<body>
+{% block content %}
+        <p id="home"> <a href="/home"> Home </a> </p>
+        {{state}}
+        <form action="/search/" method="post">
+            {% csrf_token %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{next}}"/>
+            {% endif %}
+            D_number:
+            <input type="text" name="d_number" value="" /><br />
+            Date:
+            <input type="date" name="date" value="" /><br />
+           Worksheet Number:
+            <input type="text" name="worksheet_number" value="" /><br />
+            Link to S Drive:
+            <input type="text" name="link" value="" /><br />
+
+            <input type="submit" value="Search" />
+        </form>
+{% endblock %}
+</body>
+</html>

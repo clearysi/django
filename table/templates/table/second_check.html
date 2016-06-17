@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+<html>
+    <head>
+        <title> Sample Database</title>
+        <link rel="stylesheet" href="{{ STATIC_URL}}django_tables2/themes/paleblue/css/screen.css"/>
+    </head>
+
+<body>
+{% block content %}
+<p id="home"> <a href="/home"> Home </a> </p>
+<table>
+    <thead>
+    <tr>
+        <th colspan="7" >Sample Database</th>
+    </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th>D Number</th>
+                <th>Date</th>
+                <th>Worksheet Number</th>
+                <th>Link to S Drive</th>
+                <th>Classification</th>
+                <th>First Check</th>
+                <th>Second Check</th>
+            </tr>
+    {% for b in obj %}
+        <tr>
+        <form action="/second_check/" method="post">
+            {% csrf_token %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{next}}"/>
+            {% endif %}
+            <td><input type="text" name="d_number" value="{{b.d_number}}" /><br /> </td>
+            <td><input type="text" name="date" value="{{b.date|date:'Y-m-d'}}" /><br /></td>
+            <td><input type="text" name="worksheet_number" value="{{b.worksheet_number}}" /><br /></td>
+            <td><input type="text" name="link" value="{{b.link}}" /><br /></td>
+            <td><input type="text" name="classification" value="{{b.classification}}" /><br /></td>
+            <td><input type="text" name="first_check" value="{{b.first_check}}" /><br /></td>
+            <td><input type="checkbox" name="second_check" value="{{request.user.username}}" /><br /></td>
+            <td><input type="submit" onclick="return confirm ('Are you sure this sample is correct?')" value="Submit" /></td>
+        </form>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+</body>
+</html>

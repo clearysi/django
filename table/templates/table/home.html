@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+<!--<label for="your_name">Your name: </label>-->
+<head>
+    <% block pagetitle %> Sample Database <% endblock %>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+{% block content %}
+<div class="content">
+{% if user.is_authenticated %}
+<div id="featured">
+		<div>
+			<ul>
+				<li>
+					<h3>Add Input</h3>
+					<div>
+						<p>
+							Add sample information manually or by uploading a csv file.
+						</p>
+						<a href="/input/" class="more">click here</a>
+					</div>
+					<img src="{% static 'table/input.png' %}" alt="">
+
+				</li>
+				<li>
+					<h3>Query Database</h3>
+					<div>
+						<p>
+							Search and download results for samples in the database.
+						</p>
+						<a href="/results/" class="more">click here</a>
+					</div>
+					<img src="{% static 'table/database.jpg' %}" alt="">
+				</li>
+				<li>
+					<h3>First Check</h3>
+					<div>
+						<p>
+							List of results that need first check.
+						</p>
+						<a href="/first_check/" class="more">click here</a>
+					</div>
+					<img src="{% static 'table/first_check.png' %}" alt="">
+				</li>
+				<li>
+					<h3>Second Check</h3>
+					<div>
+						<p>
+							List of results that have been checked once and need to undergo second check.
+						</p>
+						<a href="/second_check/" class="more">click here</a>
+					</div>
+					<img src="{% static 'table/second_check.png' %}" alt="">
+				</li>
+			</ul>
+		</div>
+	</div>
+{% else %}
+    <a href="/login/">Please Login</a>
+{% endif %}
+{% endblock %}
+
+</div>
+</body>
